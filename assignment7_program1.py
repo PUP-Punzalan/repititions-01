@@ -1,3 +1,7 @@
+import re
+
+print(f"\tWelcome to Word and Character Counter, type anything and we'll count them for you!")
+
 # function for counting the characters
 def counter(sentenceF):
     # splitting the words
@@ -11,9 +15,9 @@ def counter(sentenceF):
     otherCharCount = 0
 
     # arranging the VARIABLES and listing their value (in string)
-    vowels = ["a", "e", "i", "o", "u"]
-    numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
-    consonants = ["b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z", "ñ"]
+    vowels = re.split(r"\s", "a e i o u")
+    numbers = re.split(r"\s", "0 1 2 3 4 5 6 7 8 9")
+    consonants = re.split(r"\s", "b c d f g h j k l m n p q r s t v w x y z")
     space = [" "]
 
     # arranging the conditions by vowels > consonants > numbers > space > other characters
@@ -33,7 +37,7 @@ def counter(sentenceF):
                         otherCharCount = otherCharCount + 1
 
     # printing all the data needed (words, vowels, and consonants)
-    print(f"Output:\nWord(s): {totalWords}\nVowel(s): {vowelCount}\nConsonant(s): {consonantCount}")
+    print(f"RESULTS:\nWord(s): {totalWords}\nVowel(s): {vowelCount}\nConsonant(s): {consonantCount}\nSpace(s): {spaceCount}\nNumber(s): {numberCount}\nSpecial Character(s): {otherCharCount}")
 
 # asking for the input as well as converting the input into lowecase
 sentence = input("Input: ").lower()

@@ -1,3 +1,8 @@
+import string
+import re
+
+print(f"\tWelcome to Password Validator, type your desired password and we'll check them for you!")
+
 # function for checking the characters
 def checker(passF):
 
@@ -10,10 +15,10 @@ def checker(passF):
     spaceValidCount = 0
 
     # arranging the VARIABLES and listing their value (in string)
-    upperletters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
-    lowerletters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
-    numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
-    specChar = ["<", ",", ">", ".", "?", "/", ":", ";", "~", "`", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "-", "+", "=", "{", "[", "}", "]", "|"]
+    upperletters = string.ascii_uppercase
+    lowerletters = string.ascii_lowercase
+    numbers = re.split(r"\s", "0 1 2 3 4 5 6 7 8 9")
+    specChar = re.split(r"\s", "! @ # $ % ^ & * ( ) - _ = + [ ] { } \ | ; : , < . > / ? ~")
     space = [" "]
 
     # checking if the password met the minimum number of characters
@@ -74,11 +79,12 @@ def checker(passF):
 
     # making the conditions for validCount
     if validCount < 6:
-        print("Invalid")
+        print("Invalid, please try again.")
     else:
-        print("Valid")
+        print("Valid, your password is good to go.")
 
 # asking for the input
+print(f"REQUIREMENTS:\n- minimum of 15 characters\n- strictly no space\n- at least ONE uppercase letter\n- at least ONE lowercase letter\n- at least ONE number\n- at least ONE special character")
 password = input("Password: ")
 
 # calling the function with the password variable to be checked
